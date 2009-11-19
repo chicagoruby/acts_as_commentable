@@ -19,18 +19,16 @@ module ActsAsCommentable
       # Helper class method to lookup all comments assigned
       # to all commentable types for a given user.
       def find_comments_by_user(user)
-        find(:all,
-          :conditions => ["user_id = ?", user.id],
-          :order => "created_at DESC"
+        recent.find(:all,
+          :conditions => ["user_id = ?", user.id]
         )
       end
 
       # Helper class method to look up all comments for 
       # commentable class name and commentable id.
       def find_comments_for_commentable(commentable_str, commentable_id)
-        find(:all,
-          :conditions => ["commentable_type = ? and commentable_id = ?", commentable_str, commentable_id],
-          :order => "created_at DESC"
+        recent.find(:all,
+          :conditions => ["commentable_type = ? and commentable_id = ?", commentable_str, commentable_id]
         )
       end
 
