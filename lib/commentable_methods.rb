@@ -26,7 +26,7 @@ module Juixe
 
             # Helper method that defaults the submitted time.
             define_method "add_#{association_name.singularize}" do |comment|
-              self.send("#{association_name}") << comment
+              self.send(association_name) << comment
             end
           end
         end
