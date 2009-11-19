@@ -24,12 +24,24 @@ module ActsAsCommentable
         )
       end
 
-      # Helper class method to look up all comments for 
+      # Helper class method to lookup all comments assigned
+      # to all commentable types for a given user and type.
+      def find_comments_by_user_and_type(user, comment_type)
+        by_type(comment_type).find_comments_by_user(user)
+      end
+
+      # Helper class method to look up all comments for
       # commentable class name and commentable id.
       def find_comments_for_commentable(commentable_str, commentable_id)
         recent.find(:all,
           :conditions => ["commentable_type = ? and commentable_id = ?", commentable_str, commentable_id]
         )
+      end
+
+      # Helper class method to look up all comments for
+      # commentable class name, commentable id and comment type
+      def find_comments_for_commentable_by_type(commentable_str, commentable_id, comment_type)
+        by_type(comment_type).find_comments_for_commentable(commentable_str, commentable_id)
       end
 
       # Helper class method to look up a commentable object
