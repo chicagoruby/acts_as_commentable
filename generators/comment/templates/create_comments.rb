@@ -5,9 +5,12 @@ class CreateComments < ActiveRecord::Migration
       t.text :comment, :default => "" 
       t.references :commentable, :polymorphic => true
       t.references :user
+      t.string :comment_type
+
       t.timestamps
     end
 
+    add_index :comments, :comment_type
     add_index :comments, :commentable_type
     add_index :comments, :commentable_id
     add_index :comments, :user_id
