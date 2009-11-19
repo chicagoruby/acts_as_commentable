@@ -12,7 +12,7 @@ module ActsAsCommentable
       comment_model.named_scope :in_order, {:order => 'created_at ASC'}
       comment_model.named_scope :recent, {:order => "created_at DESC"}
       comment_model.named_scope :limit, lambda {|limit| {:limit => limit}}
-      comment_model.named_scope :by_type, lambda {|comment_type| {:comment_type => comment_type}}
+      comment_model.named_scope :by_type, lambda {|comment_type| {:conditions => {:comment_type => comment_type}}}
     end
     
     module Finders
